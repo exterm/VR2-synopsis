@@ -337,44 +337,96 @@ Projektion direkt auf die Netzhaut durch Laser, der per ``Scanner'' (Spiegel) ei
 \end{itemize}
 
 
-\subsection{Rendering auf eine ebene Projektionsfläche}
+\subsection[Ebene Projektionsflächen]{Rendering auf eine ebene Projektionsfläche}
+\label{subsec:even_proj}
 
 \subsubsection*{Raytracing}
+Verfolgung von Strahlen vom realen Augpunkt durch die Pixel der Darstellungsfläche auf die virtuellen Objekte.
 
 \subsubsection*{Rendering-Pipeline}
+\begin{itemize}
+  \item Definition einer virtuellen Projektionsfläche, die mit der realen identisch ist
+  \item Berechnung der Projektion (3D \(\rightarrow\) 2D) in der Grafikhardware durch Matrixmultiplikation
+\end{itemize}
 
 
-\subsection{Rendering auf eine allgemeine Projektionsfläche}
+\subsection[Allgemeine Projektionsflächen]{Rendering auf eine allgemeine Projektionsfläche}
 
 \subsubsection*{Reines Raytracing}
+Siehe Abschnitt~\ref{subsec:even_proj}
 
-\subsubsection*{Raytracing nach Rendering Pipeline}
+\subsubsection*{Raytracing nach Pipeline-Projektion}
+\begin{enumerate}
+  \item Projektion auf planare Hilfsprojektionsfläche durch Rendering-Pipeline
+  \item Raytracing der Hilfsprojektionsfläche auf die reale Projektionsfläche\\
+    Relativ geringer Raytracing-Aufwand!
+\end{enumerate}
 
 
-\subsection{Rendering auf eine allgemeine Projektor-bestrahlte Projektionsfläche}
+\subsection[Projektor und allgemeine Projektionsflächen]{Rendering auf eine allgemeine Projektor-bestrahlte Projektionsfläche}
 
 \subsubsection*{Problematik}
+Steht der Projektor nicht im Augpunkt (übliche Situation), so muss eine zusätzliche Projektion aus seiner Sicht auf die Projektionsfläche berechnet werden.
 
 \subsubsection*{Doppeltes Raytracing}
+\begin{enumerate}
+  \item Raytracing der Pixel des Beamers auf die Projektionsfläche
+  \item Raytracing vom Augpunkt durch projizierte Pixel auf die Szene
+\end{enumerate}
 
-\subsubsection*{Doppeltes Raytracing nach Rendering Pipeline}
+\subsubsection*{Doppeltes Raytracing nach Pipeline-Projektion}
+\begin{enumerate}
+  \item Projektion auf planare Hilfsfläche zwischen Augpunkt und Projektionsfläche durch die Rendering-Pipeline
+  \item Raytracing vom Beamer über die Projektionsfläche auf die Hilfsfläche
+\end{enumerate}
+Die Hilfsprojektionsfläche kann auch als Textur auf die Projektionsfläche gemapt werden, um einen Strahl pro Pixel zu sparen.
 
-\subsubsection*{Rendering-Pipeline nach doppeltem Raytracing}
+\subsubsection*{Pipeline-Projektion nach doppeltem Raytracing}
+\begin{enumerate}
+  \item Raytracing der Szene auf die Projektionsfläche
+  \item Pipeline-Projektion der Projektionsfläche auf die Darstellungs-Hilfsfläche des Beamers
+\end{enumerate}
+Wie kann aus der per Raytracing projizierten Szene ein OpenGL-Objekt für die Rendering-Pipeline erzeugt werden?
+
+\subsubsection*{Doppelte Pipeline-Projektion}
+\begin{enumerate}
+  \item Pipeline-Projektion der Szene auf Hilfsfläche beim Beobachter
+  \item Mappen der Hilfsfläche als Textur auf die Projektionsfläche
+  \item Pipeline-Projektion der Projektionsfläche auf Hilfsfläche beim Beamer
+\end{enumerate}
 
 \subsubsection*{Doppelte Rendering-Pipeline mit zwischengeschaltetem Raytracing}
 \begin{description}
-  \item[Variante 1] Idee 8
-  \item[Variante 2] Idee 9
-  \item[Variante 3] Idee 9a
-  \item[Variante 4] Idee 9b
+  \item[Variante 1] (Idee 9)
+    \begin{enumerate}
+      \item Pipeline-Projektion der Szene auf Hilfsfläche beim Beobachter
+      \item ?
+      \item ?
+    \end{enumerate}
+  \item[Variante 2] (Idee 9a)\\
+    Planare Projektionsfläche einfacher? Nein.
+  \item[Variante 3] (Idee 9b)\\
+    Wenn der Projektor senkrecht auf eine planare Projektionsfläche strahlt, kann das Verfahren etwas vereinfacht werden.
+    \begin{enumerate}
+      \item Projektor strahlt Projektionsfläche ``direkt'' an (hier muss keine Projektion berechnet werden)
+      \item Pipeline-Rendering der Szene auf die Projektionsfläche in einem Schritt
+    \end{enumerate}
+    Birgt Ungenauigkeiten, trifft aber auf viele VR-Systeme zu.
 \end{description}
 
 
 \subsection{Beamerstandortkorrektur per linearer Transformation}
-Näherungsweise
+Kalibrierung per Software statt physischer Ausrichtung des Projektors
+\begin{itemize}
+  \item Projektion von drei Kalibrierpunkten auf die Projektionsfläche
+  \item Interaktives Verschieben der Punkte in Ecken der Projektionsfläche
+  \item Ergebnis: drei 2D-Punkte, die mit der Projektionsmatrix verrechnet weren können
+\end{itemize}
+Das ist nur ein Notbehelf!
 
 
 \subsection{Spiegel}
+--- schließe ich aus ---
 
 
 
