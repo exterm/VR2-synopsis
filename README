@@ -1,3 +1,3 @@
 Collaborative TeX synopsis for the lecture "Virtual Reality 2" at FH Wedel, university of applied sciences.
 
-Uses rubber ( https://launchpad.net/rubber/ ) to build the pdf output.
+The Makefile uses rubber ( https://launchpad.net/rubber/ ) to build the pdf output.
