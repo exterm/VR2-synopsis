@@ -1,0 +1,400 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[margin=2cm,top=2.7cm,bottom=2.7cm]{geometry}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage{lastpage}
+\usepackage[bookmarks, hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{boxedminipage}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\frenchspacing
+\sloppy
+\setlength{\parindent}{8pt}
+
+\pagestyle{fancy}
+ 
+\lhead{Virtual Reality 2}
+\chead{Zusammenfassung}
+\rhead{WS 2011/2012} 
+
+\lfoot{Philip Müller, inf9293}
+\cfoot[Seite \thepage\ von \pageref{LastPage}]{Seite \thepage\ von \pageref{LastPage}}
+\rfoot{\today}
+\renewcommand{\footrulewidth}{.5pt}
+
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\tableofcontents
+\pagebreak
+
+
+
+\section{Vorgeplänkel}
+
+
+\subsection{Augmented Reality}
+Verknüpfung des Virtuellen mit dem Realen\\
+Milgrams Realität-Virtualität-Kontinuum
+\begin{itemize}
+  \item Spiegelbasiertes Head Mounted Display
+  \item Teildurchlässiges Display
+  \item Head Mounted Display\\
+    Enthält Kamera, Display und Spiegeloptik
+  \item Kamera-basierte AR
+  \item Virtual Retinal Display\\
+    Laserprojektion ins Auge über kleinen Spiegel
+  \item Beamer-basierte AR\\
+    Projektion ``auf reale Welt''
+\end{itemize}
+
+
+\subsection{Sinne und Wahrnehmung}
+
+\subsubsection{Haptik}
+\begin{itemize}
+  \item Exterozeption (``von Außen'', ``durch spezielle Sensoren'')
+    \begin{itemize}
+      \item Oberflächensensibilität
+      \item Schmerzwahrnehmung
+      \item Temperaturwahrnehmung
+    \end{itemize}
+  \item Propriozeptiv (``aus eigenem Körper'')
+    \begin{description}
+      \item[Lagesinn] Stellung der Gelenke
+      \item[Kraftsinn] Anspannungszustand Muskeln und Sehnen
+      \item[Kinästhesie] Bewegungen der Gelenke
+    \end{description}
+\end{itemize}
+
+\subsubsection{Vestibulär (Innenohr)}
+Mit visuellem System ``hart'' gekoppelt, wird aber bei VR selten angesprochen\\
+\(\rightarrow\) Unwohlsein wg.\ inkonsistenten Reizen
+
+
+
+\section{3D in der Computergrafik}
+
+
+\subsection{``Mono''}
+Stichworte:
+\begin{itemize}
+  \item Überlappung
+  \item Größenrelation
+  \item Bewegungsparallaxe
+  \item Farbgradienten (Beleuchtung)
+\end{itemize}
+
+
+\subsection{Stereo}
+
+\subsubsection{3D-Wahrnehmung}
+Drei Aspekte:
+\begin{description}
+  \item[Konvergenz] Ausrichtung der Augen je nach Entfernung des Objekts
+  \item[Parallaxe] ?
+  \item[Disparität] Objekte werden je nach Entfernung seitlich verschoben zu den Objekten im Fokus abgebildet.
+
+    Dabei wird in beiden Augen in entgegengesetzte Richtungen verschoben.
+\end{description}
+
+\subsubsection{Simulation der Disparität}
+Möglich, indem über zwei verschiedene Projektionen zwei Bilder berechnet werden und jedem Auge ``sein'' spezielles Bild angezeigt wird (durch zwei Projektionsflächen oder separierbare Bilder auf einer Fläche).
+
+\begin{description}
+  \item[separate Projektionsflächen] müssen i.d.R.\ mit Kopfbewegungen mitgeführt werden
+    \begin{itemize}
+      \item mit ``Abschalten der Konvergenz'' (Schielen) oder
+      \item so nah an den Augen, dass sich jede Fläche nur in dem Sichtfeld \emph{eines} Auges befindet (HMD).
+    \end{itemize}
+  \item[separierbare Bilder] auf einer Projektionsfläche
+    \begin{itemize}
+      \item passiv
+        \begin{itemize}
+          \item Farbfilter: Separation über Wellenlänge
+          \item Polarisationsfilter\\
+            Nachteile:
+            \begin{itemize}
+              \item Leinwand muss gain-Faktor größer 1 besitzen
+              \item Lichtverlust
+            \end{itemize}
+            Polarisationsarten:
+            \begin{itemize}
+              \item horizontal/vertikal: Kopfdrehung verschlechtert Filterwirkung
+              \item zirkular: entgegengesetzt drehend
+            \end{itemize}
+        \end{itemize}
+      \item aktiv: Shutter-Techniken
+        \begin{itemize}
+          \item schnelle Projektoren notwendig oder
+          \item zwei Projektoren, deren Bilder durch Shutter schnell ein- und ausgeschaltet werden können
+        \end{itemize}
+    \end{itemize}
+  \item[separate Strahlengänge] für beide Augen
+    \begin{itemize}
+      \item autostereoskopische Displays
+        \begin{itemize}
+          \item geringe Auflösung
+          \item nur spezielle Betrachtungskorridore
+        \end{itemize}
+      \item Laser
+      \item Hologramme
+    \end{itemize}
+\end{description}
+
+
+
+\section{Projektionstechnik}
+
+
+\subsection{Projektor-Typen}
+
+\subsubsection{CRT}
+Vorteile:
+\begin{itemize}
+  \item hohe Auflösung
+  \item guter Schwarzwert
+  \item beste Farbdarstellung
+  \item leicht modifizierbare Bildgeometrie
+\end{itemize}
+Nachteile:
+\begin{itemize}
+  \item Kalibrierung aufwändig und regelmäßig notwendig
+  \item geringe Helligkeit
+  \item teuer
+\end{itemize}
+
+\subsubsection{LCD}
+Projektionslampe durchleuchtet LCD-Panel.\\
+Varianten:
+\begin{itemize}
+  \item mehrere farbige Lichtquellen und monochrome LCD-Panels
+  \item eine Lichtquelle, mehrfarbiges Panel
+\end{itemize}
+Vorteile:
+\begin{itemize}
+  \item durch Lampe heller als CRT
+  \item keine Kalibration notwendig
+\end{itemize}
+Nachteile:
+\begin{itemize}
+  \item weniger farbtreu als CRT, Farben stärker quantisiert
+  \item schlechter Schwarzwert
+  \item geringe Auflösung, klar getrennte Pixel
+  \item relativ träge
+\end{itemize}
+
+\subsubsection{DLP}
+Pro Pixel ein Mikrospiegel, die Farben entstehen durch ein Farbrad. Spiegel lenken das Licht entweder durch die Farbscheibe in die Projektionsoptik oder auf einen Licht-Absorber (binär!). Abstufungen durch Pulsweitenmodulation.\\
+Varianten:
+\begin{itemize}
+  \item Farbradsystem
+  \item 3-Chip-System: Pro Farbe ein Mikrospiegel-Chip
+\end{itemize}
+Vorteile:
+\begin{itemize}
+  \item Super hell
+  \item gut Bildschärfe
+\end{itemize}
+Nachteile:
+\begin{itemize}
+  \item Breite Stege zwischen Pixeln (Spiegeln)
+  \item Streulicht reduziert Kontrast (trotzdem besser als LCD!)
+\end{itemize}
+
+\subsubsection{ILA}
+Ansteuerung eines LCD-Panels ``von hinten'' statt über Leiterbahnen zwischen den Pixeln. Keine klassiche Durchleuchtung des LCD-Panels, sondern Reflektion des Lichts am Panel.\\
+Varianten:
+\begin{itemize}
+  \item ILA: Ansteuerung durch Photoleiter-Platte, die von CRT angestrahlt wird
+  \item D-ILA: Ansteuerungspanel digital statt Photoleiter und CRT
+\end{itemize}
+Vorteile:
+\begin{itemize}
+  \item keine Stege zwischen Pixeln
+  \item heller als CRT
+  \item weichere Pixelübergänge als beim klassischen LCD
+\end{itemize}
+Nachteile:
+\begin{itemize}
+  \item sehr teuer
+  \item sehr groß
+  \item Lampen mit geringer Lebensdauer
+\end{itemize}
+
+\subsubsection{Laser}
+Zeilen-/Spaltenweises Scannen der Projektionsfläche mit drei farbigen Laserstrahlen.\\
+Vorteile:
+\begin{itemize}
+  \item Bild muss nicht scharfgestellt werden bzw. ist auf beliebige Abstände scharf (gut für nichtplanare Projektionen!)
+  \item extrem hell
+  \item extrem guter Kontrast
+\end{itemize}
+Nachteile:
+\begin{itemize}
+  \item riesige Gerätschaften
+  \item Kosten im hohen sechsstelligen Bereich
+  \item Laser-Erzeuger wartungsintesiv, kurze Lebensdauer
+  \item hoher Stromverbrauch
+  \item kaum Hersteller, schlechte Verfügbarkeit
+\end{itemize}
+
+
+\subsection{Projektionsflächen}
+
+\subsubsection{Rückprojektion}
+\begin{itemize}
+  \item Plexiglasscheiben: sehr teuer
+  \item Folien: empfindlich
+  \item gain \(> 1\)
+\end{itemize}
+
+\subsubsection{Frontprojektion}
+--- keine großartigen Infos hier ---
+
+\subsubsection{Powerwalls}
+Vorteil: Auflösung und Helligkeit ``beliebig'' vergrößerbar. Viele Rechner \(\rightarrow\) super für parallelisiertes Raytracing.\\
+Probleme:
+\begin{itemize}
+  \item Synchronisation
+  \item Übergänge: Geometrie/Überlappung, Farben, Helligkeit
+\end{itemize}
+
+\subsubsection{HMDs}
+--- keine großartigen Infos hier ---
+
+\subsubsection{CAVE-artige Projektion}
+Projektion auf große Leinwände nah am Anwender. Die Projektion kann dadurch Objekte in Lebensgröße darstellen. ``VR'' für größeres Publikum.
+
+\subsubsection{Responsive Workbench}
+--- keine großartigen Infos hier ---
+
+\subsubsection{CAVEs}
+\begin{itemize}
+  \item 2-seitig
+    \begin{itemize}
+      \item stärkere Immersion ggü.\ planarer Projektion --- Anwender fühlt sich ``mehr umgeben''
+      \item welche Seiten nimmt man am besten?
+    \end{itemize}
+  \item 3-seitig
+    \begin{itemize}
+      \item Field Of View fast komplett abgedeckt
+    \end{itemize}
+  \item 5-seitig
+    \begin{itemize}
+      \item Field Of View komplett abgedeckt
+      \item Gefahr: Anwender fühlt sich ``eingeschlossen'', da kaum Bezug zur Realwelt
+    \end{itemize}
+  \item Varianten
+    \begin{itemize}
+      \item Zusammenlegen mehrerer Wände zu einer gekrümmten Projektionsfläche
+      \item zylindrisch/sphärisch
+      \item aufwändige Projektion
+      \item aber: keine Knicke!
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Mehrprojektorsysteme}
+\begin{itemize}
+  \item aufwändige Hardware, u.a.\ wg.\ Hardware-Sync
+  \item Geometrie, Intensitäten und Farben der einzelnen Projektionen müssen angeglichen werden
+  \item z.B. Shift-Optik für Geometrie-Anpassungen
+  \item sonst kann durch Software reguliert werden --- auch automatisch (mit Kameras)
+  \item hoher Gain-Faktor problematisch
+\end{itemize}
+
+
+\subsection{VRD}
+Projektion direkt auf die Netzhaut durch Laser, der per ``Scanner'' (Spiegel) eine Bildmatrix auf der Netzhaut erzeugt.
+\begin{itemize}
+  \item leichte, alltagstaugliche Geräte
+  \item Stereo-Betrieb möglich
+  \item Nachteil: Blockiert der Scanner, lasert er das Auge weg
+\end{itemize}
+
+
+
+\section{Nichttriviale Projektionen}
+
+
+\subsection{Grundlegende Problematik}
+\begin{itemize}
+  \item Rendering Pipeline erlaubt nur eine, planare mathematische Projektion
+  \item Allgemeine Projektor-Projektionen benötigen mehrere mathematische Projektionen
+  \item Mehrere ``konkatenierte'' math.\ Projektionen in Rendering-Pipeline nicht möglich, da der Projektionsschritt in der Pipeline auch Clipping und Filling enthält, was nur einmal ausgeführt werden soll
+  \item Raytracing: Lösung, aber langsam
+  \item Auslagerung von Teilaufgaben an die Rendering-Pipeline
+\end{itemize}
+
+
+\subsection{Rendering auf eine ebene Projektionsfläche}
+
+\subsubsection{Raytracing}
+
+\subsubsection{Rendering-Pipeline}
+
+
+\subsection{Rendering auf eine allgemeine Projektionsfläche}
+
+\subsubsection{Reines Raytracing}
+
+\subsubsection{Raytracing nach Rendering Pipeline}
+
+
+\subsection{Rendering auf eine allgemeine Projektor-bestrahlte Projektionsfläche}
+
+\subsubsection{Problematik}
+
+\subsubsection{Doppeltes Raytracing}
+
+\subsubsection{Doppeltes Raytracing nach Rendering Pipeline}
+
+\subsubsection{Rendering-Pipeline nach doppeltem Raytracing}
+
+\subsubsection{Doppelte Rendering-Pipeline mit zwischengeschaltetem Raytracing}
+\begin{description}
+  \item[Variante 1] Idee 8
+  \item[Variante 2] Idee 9
+  \item[Variante 3] Idee 9a
+  \item[Variante 4] Idee 9b
+\end{description}
+
+
+\subsection{Beamerstandortkorrektur per linearer Transformation}
+Näherungsweise
+
+
+\subsection{Spiegel}
+
+
+
+\section{Klangwahrnehmung}
+
+
+
+\section{3D-Sound-Rendering}
+
+
+
+\section{Haptische Wahrnehmung}
+
+
+
+\section{Haptik-Simulation}
+
+
+
+\section{Echtzeitschatten}
+
+
+\end{document}
