@@ -14,10 +14,11 @@
 \usepackage{boxedminipage}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{enumitem}
 
-\frenchspacing
 \sloppy
 \setlength{\parindent}{8pt}
+\setlist[description]{itemindent=-1pt, leftmargin=50pt, itemsep=.5em}
 
 \pagestyle{fancy}
  
@@ -30,7 +31,7 @@
 \rfoot{\today}
 \renewcommand{\footrulewidth}{.5pt}
 
-\setcounter{tocdepth}{2}
+%\setcounter{tocdepth}{2}
 
 \begin{document}
 
@@ -60,7 +61,7 @@ Milgrams Realität-Virtualität-Kontinuum
 
 \subsection{Sinne und Wahrnehmung}
 
-\subsubsection{Haptik}
+\subsubsection*{Haptik}
 \begin{itemize}
   \item Exterozeption (``von Außen'', ``durch spezielle Sensoren'')
     \begin{itemize}
@@ -76,7 +77,7 @@ Milgrams Realität-Virtualität-Kontinuum
     \end{description}
 \end{itemize}
 
-\subsubsection{Vestibulär (Innenohr)}
+\subsubsection*{Vestibulär (Innenohr)}
 Mit visuellem System ``hart'' gekoppelt, wird aber bei VR selten angesprochen\\
 \(\rightarrow\) Unwohlsein wg.\ inkonsistenten Reizen
 
@@ -97,17 +98,16 @@ Stichworte:
 
 \subsection{Stereo}
 
-\subsubsection{3D-Wahrnehmung}
+\subsubsection*{3D-Wahrnehmung}
 Drei Aspekte:
 \begin{description}
   \item[Konvergenz] Ausrichtung der Augen je nach Entfernung des Objekts
   \item[Parallaxe] ?
   \item[Disparität] Objekte werden je nach Entfernung seitlich verschoben zu den Objekten im Fokus abgebildet.
-
     Dabei wird in beiden Augen in entgegengesetzte Richtungen verschoben.
 \end{description}
 
-\subsubsection{Simulation der Disparität}
+\subsubsection*{Simulation der Disparität}
 Möglich, indem über zwei verschiedene Projektionen zwei Bilder berechnet werden und jedem Auge ``sein'' spezielles Bild angezeigt wird (durch zwei Projektionsflächen oder separierbare Bilder auf einer Fläche).
 
 \begin{description}
@@ -158,7 +158,7 @@ Möglich, indem über zwei verschiedene Projektionen zwei Bilder berechnet werde
 
 \subsection{Projektor-Typen}
 
-\subsubsection{CRT}
+\subsubsection*{CRT}
 Vorteile:
 \begin{itemize}
   \item hohe Auflösung
@@ -173,7 +173,7 @@ Nachteile:
   \item teuer
 \end{itemize}
 
-\subsubsection{LCD}
+\subsubsection*{LCD}
 Projektionslampe durchleuchtet LCD-Panel.\\
 Varianten:
 \begin{itemize}
@@ -193,7 +193,7 @@ Nachteile:
   \item relativ träge
 \end{itemize}
 
-\subsubsection{DLP}
+\subsubsection*{DLP}
 Pro Pixel ein Mikrospiegel, die Farben entstehen durch ein Farbrad. Spiegel lenken das Licht entweder durch die Farbscheibe in die Projektionsoptik oder auf einen Licht-Absorber (binär!). Abstufungen durch Pulsweitenmodulation.\\
 Varianten:
 \begin{itemize}
@@ -211,7 +211,7 @@ Nachteile:
   \item Streulicht reduziert Kontrast (trotzdem besser als LCD!)
 \end{itemize}
 
-\subsubsection{ILA}
+\subsubsection*{ILA}
 Ansteuerung eines LCD-Panels ``von hinten'' statt über Leiterbahnen zwischen den Pixeln. Keine klassiche Durchleuchtung des LCD-Panels, sondern Reflektion des Lichts am Panel.\\
 Varianten:
 \begin{itemize}
@@ -231,7 +231,7 @@ Nachteile:
   \item Lampen mit geringer Lebensdauer
 \end{itemize}
 
-\subsubsection{Laser}
+\subsubsection*{Laser}
 Zeilen-/Spaltenweises Scannen der Projektionsfläche mit drei farbigen Laserstrahlen.\\
 Vorteile:
 \begin{itemize}
@@ -251,17 +251,17 @@ Nachteile:
 
 \subsection{Projektionsflächen}
 
-\subsubsection{Rückprojektion}
+\subsubsection*{Rückprojektion}
 \begin{itemize}
   \item Plexiglasscheiben: sehr teuer
   \item Folien: empfindlich
   \item gain \(> 1\)
 \end{itemize}
 
-\subsubsection{Frontprojektion}
+\subsubsection*{Frontprojektion}
 --- keine großartigen Infos hier ---
 
-\subsubsection{Powerwalls}
+\subsubsection*{Powerwalls}
 Vorteil: Auflösung und Helligkeit ``beliebig'' vergrößerbar. Viele Rechner \(\rightarrow\) super für parallelisiertes Raytracing.\\
 Probleme:
 \begin{itemize}
@@ -269,16 +269,16 @@ Probleme:
   \item Übergänge: Geometrie/Überlappung, Farben, Helligkeit
 \end{itemize}
 
-\subsubsection{HMDs}
+\subsubsection*{HMDs}
 --- keine großartigen Infos hier ---
 
-\subsubsection{CAVE-artige Projektion}
+\subsubsection*{CAVE-artige Projektion}
 Projektion auf große Leinwände nah am Anwender. Die Projektion kann dadurch Objekte in Lebensgröße darstellen. ``VR'' für größeres Publikum.
 
-\subsubsection{Responsive Workbench}
+\subsubsection*{Responsive Workbench}
 --- keine großartigen Infos hier ---
 
-\subsubsection{CAVEs}
+\subsubsection*{CAVEs}
 \begin{itemize}
   \item 2-seitig
     \begin{itemize}
@@ -339,29 +339,29 @@ Projektion direkt auf die Netzhaut durch Laser, der per ``Scanner'' (Spiegel) ei
 
 \subsection{Rendering auf eine ebene Projektionsfläche}
 
-\subsubsection{Raytracing}
+\subsubsection*{Raytracing}
 
-\subsubsection{Rendering-Pipeline}
+\subsubsection*{Rendering-Pipeline}
 
 
 \subsection{Rendering auf eine allgemeine Projektionsfläche}
 
-\subsubsection{Reines Raytracing}
+\subsubsection*{Reines Raytracing}
 
-\subsubsection{Raytracing nach Rendering Pipeline}
+\subsubsection*{Raytracing nach Rendering Pipeline}
 
 
 \subsection{Rendering auf eine allgemeine Projektor-bestrahlte Projektionsfläche}
 
-\subsubsection{Problematik}
+\subsubsection*{Problematik}
 
-\subsubsection{Doppeltes Raytracing}
+\subsubsection*{Doppeltes Raytracing}
 
-\subsubsection{Doppeltes Raytracing nach Rendering Pipeline}
+\subsubsection*{Doppeltes Raytracing nach Rendering Pipeline}
 
-\subsubsection{Rendering-Pipeline nach doppeltem Raytracing}
+\subsubsection*{Rendering-Pipeline nach doppeltem Raytracing}
 
-\subsubsection{Doppelte Rendering-Pipeline mit zwischengeschaltetem Raytracing}
+\subsubsection*{Doppelte Rendering-Pipeline mit zwischengeschaltetem Raytracing}
 \begin{description}
   \item[Variante 1] Idee 8
   \item[Variante 2] Idee 9
