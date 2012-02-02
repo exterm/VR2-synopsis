@@ -1,0 +1,14 @@
+Idee:
+Lichtfeldprojektion
+
+04-vr1
+S. 2: Konvergenz, Parallaxe, Disparität
+
+05-vr1
+S. 5: Warum ist das Bild bei DLP besonders scharf?
+
+-- neu --
+
+07-vr2
+S. 9 : Wie viele Strahlen und wo? Pixelverteilung über Projektionsfläche unbekannt
+S. 10: ...dessen Vertices Texturkoordinaten...
