@@ -12,3 +12,7 @@ S. 5: Warum ist das Bild bei DLP besonders scharf?
 07-vr2
 S. 9 : Wie viele Strahlen und wo? Pixelverteilung über Projektionsfläche unbekannt
 S. 10: ...dessen Vertices Texturkoordinaten...
+
+08-vr2
+S. 6: Was merken zur HRTF?
+
