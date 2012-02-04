@@ -570,9 +570,82 @@ Möglichkeiten zur Klangpositionierung:
 
 
 \subsection[Wahrnehmung]{Haptische Wahrnehmung}
+\begin{itemize}
+  \item Exterozeption und Propriozeption
+  \item Anwendung bspw.\ für Simulation oder Fernausführung manueller Tätigkeiten
+\end{itemize}
+--- Aufzählung von Referenzwerten bzgl.\ der Wahrnehmung wird hier ignoriert ---\\\\
+Nachzubildende Ereignisse:
+\begin{itemize}
+  \item Kontakt
+  \item Ergreifen
+  \item Abtasten
+\end{itemize}
+Dazu müssen folgende Parameter simuliert werden:
+\begin{description}
+  \item[Viskosität] eines Mediums
+  \item[Oberflächenreibung] als Haft- und Gleitreibung
+  \item[Oberflächenstärke] als Widerstandskraft eine Oberfläche gegen Eindringen eines Objekts
+\end{description}
 
 
 \subsection[Simulation]{Haptik-Simulation}
+
+\subsubsection*{Grundlagen}
+
+\begin{itemize}
+  \item ``Berechnung und Darstellung von virtuellen mechanischen Kräften auf einem haptischen Device''
+  \item Anforderung: 1kHz Framerate
+\end{itemize}
+
+Ansätze:
+\begin{description}
+  \item[Penalty-Methode:] Rückwirkende Kraft hängt nur von Eindringtiefe in Objekt ab\\
+    Extrem grobe Simulation von Oberflächen, Interaktor wird einfach aus Objekt herausgedrängt
+  \item[Dynamische Methode:] Kraft abhängig von Eindringhistorie
+    \begin{description}
+      \item[Impedance-Ansatz:] Meistverwendeter Ansatz
+        \begin{enumerate}
+          \item haptisches Gerät liefert \emph{Positionsinformation}
+          \item Simulation berechnet Rückwirkungskräfte
+        \end{enumerate}
+      \item[Admittance-Ansatz:]~
+        \begin{enumerate}
+          \item haptisches Gerät liefert \emph{Kräfte des Benutzers}
+          \item Simulation berechnet neue Position des Devices
+        \end{enumerate}
+    \end{description}
+\end{description}
+Haptik-Loop:
+\begin{enumerate}
+  \item erfrage Position, Geschwindigkeit und/oder Kräfte
+  \item Vergleich mit Objekten der Szene
+  \item Berechnung der rückwirkenden Kraft
+  \item Benutzerinter- und Reaktion
+\end{enumerate}
+Feedback-Möglichkeiten:
+\begin{itemize}
+  \item Widerstand bzw. Gegenkräfte
+  \item elektrische Stimulation der Haut
+  \item Ultraschall oder rotierende Scheiben
+  \item Vibrationen
+    \begin{description}
+      \item[Zweck:] Fühlen von Oberflächenstrukturen
+      \item[Problem:] Frequenzen oberhalb von 15 kHz benötigt
+    \end{description}
+\end{itemize}
+
+\subsubsection*{Phantom Devices}
+\begin{itemize}
+  \item Hardware für Kraft-Feedback
+  \item Nutzer bekommt Stiftförmigen Griff in die Hand
+  \item Simulation von Kräften in allen 6 Freiheitsgraden
+\end{itemize}
+
+\subsubsection*{Bestimmung der wirkenden Kräfte}
+
+
+\subsubsection*{Beispiel: Lumbalpunktion}
 
 
 
