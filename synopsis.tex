@@ -24,7 +24,7 @@
  
 \lhead{Virtual Reality 2}
 \chead{Zusammenfassung}
-\rhead{WS 2011/2012} 
+\rhead{WS 2011/2012}
 
 \lfoot{Philip Müller, inf9293}
 \cfoot[Seite \thepage\ von \pageref{LastPage}]{Seite \thepage\ von \pageref{LastPage}}
@@ -455,18 +455,114 @@ Wahrnehmbare Parameter:
 
 \subsection[Rendering]{Sound-Rendering}
 
-\subsubsection*{Klangverhaltensmuster}
+\subsubsection*{Grundlagen}
+\begin{itemize}
+  \item 3D-Positionierung von virtuellen Klangquellen im Raum im Gegensatz zu Stereo: ``nur links/rechts''
+  \item Phasenverschiebung und Amplitudenunterschiede realisierbar
+  \item HRTF rechenaufwändig aber weit verbreitet
+\end{itemize}
+Wellenverhalten zur Erinnerung:
 \begin{description}
   \item[Beugung] eher bei niedrigen Frequenzen, kleinen Hindernissen
   \item[Reflexion] eher bei hohen Frequenzen, glatten Flächen
 \end{description}
+Möglichkeiten zur Klangpositionierung:
+\begin{description}
+  \item[Surround Sound:] Nachbildung bestimmter Bestandteile des Raumklangeffekts
+    \begin{itemize}
+      \item 2.0 -- 5.1 -- 7.1 -- ...
+      \item Phasenverschiebung
+      \item Amplitudendifferenz
+    \end{itemize}
+  \item[Reproduktion des Schallfeldes:] komplette Nachbildung des Raumklangs
+    \begin{itemize}
+      \item Vector Based Amplitude Panning (VBAP)
+      \item Ambisonic
+      \item Wellenfeldsynthese
+    \end{itemize}
+  \item[Psychoakustischer Ansatz:] Welche Signale müssten im Ohr ankommen? Wie bekommt man die da mit möglichst wenig Aufwand hin?
+    \begin{itemize}
+      \item binaural (Kopfhörer)
+      \item transaural (Stereo-Lautsprecher)
+    \end{itemize}
+\end{description}
 
-\subsubsection*{Klangpositionierung}
+\subsubsection*{``Surround Sound''}
+--- keine großartigen Infos hier ---
 
-3D-Positionierung von virtuellen Klangquellen im Raum\\
-Stereo: ``nur links/rechts''\\
-Phasenverschiebung und Amplitudenunterschiede realisierbar\\
-HRTF rechenaufwändig aber weit verbreitet
+\subsubsection*{Vector Based Amplitude Panning}
+\begin{itemize}
+  \item Aufspannen einer Fläche durch min.\ 3 Lautsprecher
+  \item Positionieren virtueller Klangquellen auf der Fläche durch Lautstärkeunterschiede in den einzelnen Lautsprechern
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item Positionierung funktioniert nur gut, wenn virtuelle Schalquelle nicht zu weit von einem Lautsprecher entfernt. Dadurch viele Lautsprecher erforderlich
+  \item keine Verwendung der Phase zur Positionierung
+  \item virtuelle Schallquellen können nicht in der direkten Umgebung des Hörers positioniert werden
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item theoretisch beliebige Anzahl und Anordnung der Lautsprecher
+  \item pro virtueller Schallquelle nur drei Lautsprecher aktiv
+\end{itemize}
+
+\subsubsection*{Ambisonic}
+\begin{itemize}
+  \item Aufnahme- und Wiedergabetechnik
+  \item Geheimnis liegt im Mixing
+  \item Aufnahme der Gesamtamplitude sowie der Schwingungen den Richtungen
+    \begin {itemize}
+      \item oben -- unten
+      \item links -- rechts
+      \item vorne -- hinten
+    \end{itemize}
+  \item 4 Mikrofone, eins mit Kugelcharakteristik, 3 mit Acht-Charakteristik
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item Gute Qualität nur an bestimmter Hörposition (Wikipedia behauptet das Gegenteil)
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item Lautsprecher fast beliebig positionierbar
+\end{itemize}
+
+\subsubsection*{Wellenfeldsynthese}
+\begin{itemize}
+  \item Ziel: korrektes Klangfeld im gesamten Raum, damit überall ideale Hörposition
+  \item ``Array'' von vielen direkt nebeneinander angeordneten Lautsprechern, die durch phasenkorrekte Ansteuerung eine gemeinsame Wellenfront erzeugen (Huygensches Prinzip)
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item nichts für's Heimkino: Aufwändige Installation und viele Lautsprecher
+  \item der Hörraum darf den Klang nicht zusätzlich beeinflussen (unmöglich, aber näherungsweise durch kleine, möglichst absorptive Räume)
+  \item üblicherweise Positionierung nur in horizontaler Ebene durch horizontales umlaufendes Lautsprecherband
+  \item ist das Lautsprecherband unterbrochen, entstehen dort Störungen
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item ``kompletteste'' Erzeugung eines vollständigen Klangfeldes
+  \item überall ideale Hörposition
+\end{itemize}
+
+\subsubsection*{Psychoakustik}
+``externes Ohr'' meint Einfluss von Körper und Ohrmuschel auf den Klang.
+\begin{itemize}
+  \item Ausnutzen der physiologischen Eigenschaften der 3D-Wahrnehmung des Ohrs
+  \item Aufnahme z.B.\ mit Kunstkopf
+  \item künstliche Erzeugung des Gesamtsignals durch Messen der Charakteristik des Kunstkopfes und verrechnen der virtuellen Klangquellen mit den gemessenen Daten (z.B. HRTF)
+\end{itemize}
+\begin{description}
+  \item[Real:] Sound -- reales externes Ohr -- Hörkanal
+  \item[Binaural:] Sound -- virtuelles externes Ohr -- Hörkanal (z.B. per Kopfhörer!)
+  \item[Transaural:] Sound -- virtuelles externes Ohr -- reales externes Ohr -- Hörkanal (z.B. Stereo-Lautsprecher)
+    \begin{itemize}
+      \item Problem des Übersprechens: Linkes Ohr hört auch Signal für rechtes Ohr und umgekehrt
+      \item Idee: ``Gegenschall'' zum rechten Signal auf linkes Signal legen (verzögert)
+      \item neues Problem: für linkes Ohr bestimmter Gegenschall komm auch beim rechten Ohr an...
+    \end{itemize}
+\end{description}
 
 
 

@@ -15,4 +15,6 @@ S. 10: ...dessen Vertices Texturkoordinaten...
 
 08-vr2
 S. 6: Was merken zur HRTF?
+S. 9/10/11: ist VBAP nicht Bestandteil von "Surround-Sound"?
+S. 12: Was ist der Vorteil daran, dass nur 3 Lautsprecher aktiv sind?
 
