@@ -400,8 +400,8 @@ Wie kann aus der per Raytracing projizierten Szene ein OpenGL-Objekt für die Re
   \item[Variante 1] (Idee 9)
     \begin{enumerate}
       \item Pipeline-Projektion der Szene auf Hilfsfläche beim Beobachter
-      \item ?
-      \item ?
+      \item Raytracing durch ein Mesh auf der Hilfsfläche beim Projektor
+      \item Zuweisung von Texturkoordinaten (Betrachten der Hilfsfläche beim Beobachter als Textur) auf die Vertices des Mesh
     \end{enumerate}
   \item[Variante 2] (Idee 9a)\\
     Planare Projektionsfläche einfacher? Nein.
@@ -420,7 +420,7 @@ Kalibrierung per Software statt physischer Ausrichtung des Projektors
 \begin{itemize}
   \item Projektion von drei Kalibrierpunkten auf die Projektionsfläche
   \item Interaktives Verschieben der Punkte in Ecken der Projektionsfläche
-  \item Ergebnis: drei 2D-Punkte, die mit der Projektionsmatrix verrechnet weren können
+  \item Ergebnis: drei 2D-Punkte, die mit der Projektionsmatrix verrechnet werden können
 \end{itemize}
 Das ist nur ein Notbehelf!
 
