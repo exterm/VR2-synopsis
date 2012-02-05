@@ -1,34 +1,16 @@
-Idee:
-Lichtfeldprojektion
-
 04-vr1
-S. 2: Konvergenz, Parallaxe, Disparität
+S. 2: Parallaxe, was ist das?
 
 05-vr1
 S. 5: Warum ist das Bild bei DLP besonders scharf?
 
--- neu --
-
-07-vr2
-S. 9 : Wie viele Strahlen und wo? Pixelverteilung über Projektionsfläche unbekannt
-S. 10: ...dessen Vertices Texturkoordinaten...
-
 08-vr2
-S. 6: Was merken zur HRTF?
-S. 9/10/11: ist VBAP nicht Bestandteil von "Surround-Sound"?
 S. 12: Was ist der Vorteil daran, dass nur 3 Lautsprecher aktiv sind?
 
 09-vr2
-S. 7 : Rutschigkeit hervorrufen --- WAT?
 S. 10/11/12: Gegensatz Oberflächenrendering/Volumenrendering --- Unterschied? Wie hängen überhaupt die ganzen Ansätze zusammen?
-S. 14: Prox ydarf sich nur senkrecht zur Oberfläche bewegen ?!
-S. 15: Was macht der Schwellwert bei der Viskosität?
-- Wie sieht das Vektorfeld aus? (Aus "Fragenkatalog")
-
-10-vr2
-S. 2: Raytracing-Schatten richtig verstanden?
-S. 2: "Meshing" bei Punkt 3 --- WAT?
-S. 16: Wann sind Strahlen "verdeckt"?
-S. 16: Hardware-Algorithmus: Was machen die Strahlen?
-
+--- Wie sieht das Vektorfeld aus? (Aus "Fragenkatalog") ---
+S. 12: Energie wird dem System zugeführt... WAT?!
+--- Definieren sich Oberflächen im Volumen-Rendering durch Dichte-Unterschiede? --
+s. 15: Geheimnisvoller Schwellwert für Viskosität. Was sind eigentlich R und k ? (k Federkonstante!)
 
