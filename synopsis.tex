@@ -638,7 +638,7 @@ Feedback-Möglichkeiten:
 \subsubsection*{Phantom Devices}
 \begin{itemize}
   \item Hardware für Kraft-Feedback
-  \item Nutzer bekommt Stiftförmigen Griff in die Hand
+  \item Nutzer bekommt stiftförmigen Griff in die Hand
   \item Simulation von Kräften in allen 6 Freiheitsgraden
 \end{itemize}
 
@@ -736,15 +736,93 @@ Algorithmenklassen für Schatten:
 
 
 \subsection{Projective Shadows}
-?
-
+Performant bei vielen schattenwerfenden und wenig schattierten Objekten\\
+Vorgehensweise:
+\begin{enumerate}
+  \item projiziere schattenwerfende Objekte aus Sicht der Lichtquelle auf schattierte Objekte
+  \item rendere in Texturen (eine pro schattiertem Objekt, auch bei mehreren schattenwerfenden!)
+  \item rendere Szene normal, mappe Schattentexturen auf schattierte Objekte
+\end{enumerate}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item Texturauflösung begrenzt Schattenauflösung
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item Punktlichtquellen und paralleles Licht möglich durch verschiedene Projektionen (orthogonal vs.\ perspektivisch)
+\end{itemize}
+Alternative Methode: Geometrie des schattenwerfenden Objekts wird direkt auf das schattierte projiziert (ohne Umweg über Textur)
+\begin{enumerate}
+  \item Zeichne Objekt, auf das der Schatten gerendert werden soll
+  \item projiziere schattenwerfendes Objekt durch \emph{shadow projection matrix} auf das zu schattierende Objekt. Die Matrix ist vom schattierten Objekt und der Lichtquellenposition abhängig
+\end{enumerate}
+\begin{itemize}
+  \item Problem: z-Fighting zwischen schattiertem Objekt und Schatten
+  \item Lösungsidee 1: Zeichnen der Schatten ``etwas näher'' Richtung Augpunkt
+  \item Lösungsidee 2:
+    \begin{enumerate}
+      \item Markieren der Schattenpixel im Stencil Buffer
+      \item Schatten ohne Depth-Test an im Stencil Buffer markierte Stellen rendern
+    \end{enumerate}
+  \item Problem: Schatten sind absolut schwarz bzw.\ einfarbig
+  \item Lösung: Verknüpfen von im Stencil Buffer markierten Schattenpixeln mit Hintergrund durch Blending
+  \item Komplexität alternative Methode: Projektionsmatrizen \(\times\) Lichtquellen
+\end{itemize}
 
 \subsection{Shadow Volumes}
-?
+Idee:
+\begin{itemize}
+  \item geometrische Definition des Raumes, der im Schatten liegt durch Polygonliste
+  \item liegt ein Oberflächenpixel in diesem Raum, wird es abgedunkelt (schattiert) dargestellt
+\end{itemize}
+Vorgehensweise:
+\begin{enumerate}
+  \item berechne über Flächennormalen die Silhouette des schattenwerfenden Objekts (Skalarprodukt)
+  \item erzeuge unendlich lange Strahlen von der Lichtquelle durch alle Vertices der Silhouette\\
+    Diese definieren die Kanten des Schattenvolumens
+  \item berechne Anzahl der Polygone des Schattenvolumens zwischen Augpunkt und Oberflächenpixel
+  \item ungerade = schattiert, gerade = nicht schattiert\\
+    umgekehrt wenn Augpunkt innerhalb des Schattenvolumens
+\end{enumerate}
+Hardware-basierte Auswertung:
+\begin{enumerate}
+  \item Rendere Szene (von hinten nach vorne wegen z-Buffer)
+  \item addiere Polygone des Shadow Volume auf Stencil Buffer
+  \item Wenn ``schattenempfangende'' Objekte gerendert werden, schattiere entsprechende Pixel, wenn deren Stencil-Buffer-Eintrag ungerade ist
+\end{enumerate}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item schwierig für nichtpolygonale Objekte
+  \item Silhouetten finden allgemein nicht einfach, fehlerbehaftet
+  \item Neuberechnung der Volumes notwendig, wenn Lichtquellen oder schattenwerfende Objekte sich bewegen
+  \item Speicheraufwand für Shadow-Geometrien
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item ?
+\end{itemize}
 
 
 \subsection{Shadow Maps}
-?
+Vorgehensweise:
+\begin{enumerate}
+  \item rendere Szene von der Lichtquelle aus auf nicht sichtbaren Framebuffer\\
+    (der Tiefenpuffer ist die Shadow Map)
+  \item Bestimmung der Schattiertheit eines Pixels beim Rendern der Szene:
+    \begin{enumerate}
+      \item Projiziere 3D-Pixelkoordinaten in Shadow-Map-Projektion
+      \item wenn der z-Wert des projizierten Pixels größer ist als der des entsprechenden Pixels auf der Shadow Map, ist das Pixel von der Lichtquelle aus verdeckt --- also schattiert
+    \end{enumerate}
+\end{enumerate}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item Shadow Maps sind diskretisiert (Auflösungsartefakte) und quantisiert (Genauigkeit des Tiefenpuffers)
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item allgemeine Methode für alle Schatten, auch \emph{self shadowing}
+  \item Schatten-Repräsentation unabhängig von Komplexität der Szene (außer Anzahl Lichtquellen)
+\end{itemize}
 
 
 \subsection{Soft Shadows}
@@ -768,10 +846,10 @@ Algorithmenklassen für Schatten:
 Implementierung in Hardware:
 \begin{description}
   \item[Idee:] Nur Objekte in nächster Umgebung signifikant
-  \item[Algorithmus:]~
+  \item[Verfahren:]~
     \begin{itemize}
       \item teste z-Werte von Pixeln in direkter Umgebung des betrachteten Pixels im Framebuffer
-      \item Strahlen, bla?
+      \item Wähle Pixel entsprechend einer Maske aus, die ein gleichmäßiges Sampling sicherstellt
     \end{itemize}
 \end{description}
 
