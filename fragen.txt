@@ -19,6 +19,10 @@ S. 9/10/11: ist VBAP nicht Bestandteil von "Surround-Sound"?
 S. 12: Was ist der Vorteil daran, dass nur 3 Lautsprecher aktiv sind?
 
 09-vr2
-S. 7 : Rutschigkeit hervorrufen - WAT?
-S. 10/11/12: Gegensatz Oberflächenrendering/Volumenrendering --- Unterschied?
+S. 7 : Rutschigkeit hervorrufen --- WAT?
+S. 10/11/12: Gegensatz Oberflächenrendering/Volumenrendering --- Unterschied? Wie hängen überhaupt die ganzen Ansätze zusammen?
+S. 14: Prox ydarf sich nur senkrecht zur Oberfläche bewegen ?!
+S. 15: Was macht der Schwellwert bei der Viskosität?
+- Wie sieht das Vektorfeld aus? (Aus "Fragenkatalog")
+
 
