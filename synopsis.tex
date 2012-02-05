@@ -642,8 +642,50 @@ Feedback-Möglichkeiten:
   \item Simulation von Kräften in allen 6 Freiheitsgraden
 \end{itemize}
 
-\subsubsection*{Bestimmung der wirkenden Kräfte}
-?
+\subsubsection*{Penalty Based Rendering}
+\begin{itemize}
+  \item Kraft proportional zur Eindringtiefe
+  \item wirkt in Richtung des nächsten Oberflächenpunktes
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item Eindringtiefe nicht eindeutig (welche Richtung?)
+  \item bei dünnen Objekten wird der HIP (Haptics Interface Point) eventuell ab bestimmter Eindringtiefe durch das Objekt hindurch gedrängt (wenn näher an gegenüberliegender Oberfläche...)
+\end{itemize}
+
+\subsubsection*{Proxy Rendering (dynamischer Ansatz)}
+\begin{itemize}
+  \item Idee: Richtung der Eindringung soll bekannt sein
+  \item Proxy-Objekt: Massenlose Kugel
+  \item Proxy dringt (vorerst) nicht in Oberfläche ein, versucht aber, dem HIP zu folgen
+  \item Distanz zwischen HIP und Proxy bestimmt Kraft (``virtuelle Feder'')
+\end{itemize}
+Für \emph{Volumen-Rendering} braucht man ein 3D-Array mit Dichte, Materialklassifikation, Steifheit (Federkonstante!) und Viskosität. Oberflächen werden hier durch hohe Dichteunterschiede dargestellt (großer Gradient) (?)
+\begin{description}
+  \item[Oberflächendurchdringung]~
+    \begin{itemize}
+      \item Schwellwert für Kraft in Richtung der Oberflächennormalen, ab der der Proxy eindringt
+      \item Eindringung findet nur in Richtung der Oberflächennormalen statt, der tangentiale Anteil wird über die Reibungskomponente berechnet
+      \item Positionsänderung wird um Durchdringungsstärke vermindert
+    \end{itemize}
+  \item[Haftreibung]~
+    \begin{itemize}
+      \item Schwellwert für Kraft in zur Oberfläche tangentialer Richtung, ab der Proxy sich entlang der Oberfläche bewegt
+      \item Abhängig von Kraft in Richtung der Normalen (Anpressdruck) und Reibungskonstante
+      \item Positionsänderung wird um Haftungsstärke vermindert
+    \end{itemize}
+  \item[Viskosität]~
+    \begin{itemize}
+      \item Schwellwert?
+      \item Viskosität erforderlich für Widerstand in Bereichen ohne Gradienten (Oberflächen)
+      \item wirkt stets der vorher berechneten Bewegungsrichtung entgegen (verlangsamt)
+    \end{itemize}
+\end{description}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\Large{!}}%
+  \item Berechnung der Gradienten sollte als Vorverarbeitungsschritt durchgeführt werden
+  \item Reibungskomponente existiert nur, wenn Proxy auf Oberfläche
+\end{itemize}
 
 
 
