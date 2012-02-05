@@ -12,5 +12,9 @@ S. 10/11/12: Gegensatz Oberflächenrendering/Volumenrendering --- Unterschied? W
 --- Wie sieht das Vektorfeld aus? (Aus "Fragenkatalog") ---
 S. 12: Energie wird dem System zugeführt... WAT?!
 --- Definieren sich Oberflächen im Volumen-Rendering durch Dichte-Unterschiede? --
-s. 15: Geheimnisvoller Schwellwert für Viskosität. Was sind eigentlich R und k ? (k Federkonstante!)
+S. 15: Geheimnisvoller Schwellwert für Viskosität. Was sind eigentlich R und k ? (k Federkonstante!)
+
+10-vr2
+S. 7-10: Haben Shadow Volumes Vorteile? ^^
+S. 12: auch self shadowing?
 
