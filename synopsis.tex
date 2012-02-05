@@ -647,24 +647,91 @@ Feedback-Möglichkeiten:
 
 
 
-
-
 \section{Echtzeitschatten}
 
 
+\subsection{Grundlagen}
+\begin{itemize}
+  \item Schatten wichtig für Raumeindruck, Relativpositionen der Objekte
+  \item ``echte'' Schattierung nicht in Rendering-Pipeline lösbar, da auf Objekte der Szene zugegriffen werden muss
+  \item Echtzeitschatten deshalb ``getrickst'', ``Fakes'' statt globalem Beleuchtungsmodell, das in der RP nicht umsetzbar ist
+\end{itemize}
+Algorithmenklassen für Schatten:
+\begin{description}
+  \item[Scanline/Raytracing]~
+    \begin{itemize}
+      \item Strahlverfolgung vom Augpunkt in die Szene bis zur ersten (teil-)diffusen Fläche
+      \item Prüfe Verdeckung des Punktes gegenüber der Lichtquelle mittels ``Shadow Ray''\\\(\Rightarrow\) Schatten
+    \end{itemize}
+    \begin{itemize}
+      \renewcommand{\labelitemi}{\(-\)}%
+      \item langsam
+    \end{itemize}
+  \item[Global Illumination]~
+    \begin{itemize}
+      \renewcommand{\labelitemi}{\(-\)}%
+      \item sehr aufwändig, nicht echtzeitfähig
+    \end{itemize}
+    \begin{itemize}
+      \renewcommand{\labelitemi}{+}%
+      \item beste visuelle Qualität
+    \end{itemize}
+  \item[Lokale Beleuchtung, Rendering Pipeline]~
+    \begin{itemize}
+      \item Verdeckungen zur Lichtquelle vorberechnen und mit dem lokalen Beleuchtungsmodell kombinieren
+    \end{itemize}
+    \begin{itemize}
+      \renewcommand{\labelitemi}{\(-\)}%
+      \item schlechte Qualität
+      \item Berechnung der Verdeckung aufwändig, langsam
+      \item ? Meshing
+    \end{itemize}
+  \item[Schatten als geometrisches Objekt]~
+    \begin{itemize}
+      \item meistverwendete Algorithmen für Echtzeitschatten
+    \end{itemize}
+\end{itemize}
+
+
 \subsection{Projective Shadows}
+?
 
 
 \subsection{Shadow Volumes}
+?
 
 
 \subsection{Shadow Maps}
+?
 
 
 \subsection{Soft Shadows}
+\begin{itemize}
+  \item Ziel: Emulation flächiger Lichtquellen für weiche Schattengrenzen
+  \item Algorithmus:\\
+    Rendere Schatten mehrmals mit leicht verschobener Lichtquelle und addiere Schatten (Blending)
+  \item Gleichmäßiges Sampling der leuchtenden Fläche
+\end{itemize}
 
 
 \subsection{Ambient Occlusion}
+\begin{description}
+  \item[Idee:] Schattierung eines Pixels proportional zum Grad der Verdeckung gegenüber einer theoretischen gleichmäßigen Umgebungsbeleuchtung
+  \item[Algorithmus:]~
+    \begin{enumerate}
+      \item Schiesse Strahlen vom Objektpunkt in ``die Umgebung''
+      \item Zählen ``verdeckter'' Strahlen
+    \end{enumerate}
+\end{description}
+Implementierung in Hardware:
+\begin{description}
+  \item[Idee:] Nur Objekte in nächster Umgebung signifikant
+  \item[Algorithmus:]~
+    \begin{itemize}
+      \item teste z-Werte von Pixeln in direkter Umgebung des betrachteten Pixels im Framebuffer
+      \item Strahlen, bla?
+    \end{itemize}
+\end{description}
 
 
 \end{document}

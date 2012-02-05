@@ -25,4 +25,10 @@ S. 14: Prox ydarf sich nur senkrecht zur Oberfläche bewegen ?!
 S. 15: Was macht der Schwellwert bei der Viskosität?
 - Wie sieht das Vektorfeld aus? (Aus "Fragenkatalog")
 
+10-vr2
+S. 2: Raytracing-Schatten richtig verstanden?
+S. 2: "Meshing" bei Punkt 3 --- WAT?
+S. 16: Wann sind Strahlen "verdeckt"?
+S. 16: Hardware-Algorithmus: Was machen die Strahlen?
+
 
