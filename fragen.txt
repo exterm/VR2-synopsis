@@ -18,3 +18,41 @@ S. 15: Geheimnisvoller Schwellwert für Viskosität. Was sind eigentlich R und k
 S. 7-10: Haben Shadow Volumes Vorteile? ^^
 S. 12: auch self shadowing?
 
+
+************************
+
+
+
+hier ist eine kleine Zusammenfassung der Themengebiete aus den letzten Prüfungen:
+
+- Audio-Rendering
+  - HRTF und so
+- Projektion
+   - alle Varianten
+  - Erstmal was über Projektion erzählen (Augpunkt, planare Oberfläche, Framebuffer Farben bestimmen, Rendering Pipeline).
+  - Dann hat man hat eine shperische (einfach nicht planare) Oberfläche. Was ändert sich? (Raytracing notwendig, es gibt keine "nicht planaren LCDs", daher 2. Projektion, unperformant mit Raytracing, Beschleunigung usw.)
+  - Die Idee 9 mit dem Mesh genau erklären (das hab ich immer noch nicht so richtig gecheckt).
+  - Wie kann man ein Bild berechnen, das von einem Projektor auf eine allgemeine, gekrümmte Projektionsfläche projiziert wird und das von einem bestimmten Betrachterstandpunkt korrekt ist? (Verfahren 9 aus den Projektionsunterlagen)
+- Haptik
+  - Lundin erklären (Aufteilen in Kraft in Normale und Tangential, Schwellwerte, evtl. Federkraftformel kurz hinschreiben)
+    - Wie sieht das Vektorfeld aus?
+    - Was ist ein Proxy-Objekt?
+    - Wie berechnet man die (Feder-)Kraft?
+    - drei Schritte des Verfahrens (Oberflächendurchdringung, Reibung, Viskosität)
+- Mehrprojektorprojektionen
+- Lagre Scale Displays
+   - Projektoren überlappen
+    - Was ist zu beachten?
+    - Wie macht man das?
+    - Wie weit überlappen lassen?
+      - ca 20 cm
+      - überlappende Bereiche "ausfaden"
+    - Wieso nicht mehr/weniger Überlappung?
+      - weniger: nicht so sanfter Übergang
+      - mehr: Probleme mit Geometrie, da Beamer verzerren und dann das Bild nicht mehr übereinander liegt
+- Tracking
+  - allgemeines Problem (überbestimmte Gleichungssysteme durch mehr Messpunkte, als man mathematisch bräuchte, die man aber braucht, weils Messungenauigkeiten gibt)
+  - Lösung (Reduktionsverfahren, z.B. Gradientenabstiegsverfahren, Was ist ein Gradient? Wie berechnet man ihn? Was ist eine Fehlerquadratfunktion?)
+- sonstiger Kleinkram
+
+Formeln wollte er keine wissen, aber genaue Zeichnungen der Verfahren und detaillierte Erklärungen.
