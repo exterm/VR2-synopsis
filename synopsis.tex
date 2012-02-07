@@ -383,8 +383,9 @@ Die Hilfsprojektionsfläche kann auch als Textur auf die Projektionsfläche gema
 
 \subsubsection*{Pipeline-Projektion nach doppeltem Raytracing}
 \begin{enumerate}
-  \item Raytracing der Szene auf die Projektionsfläche
-  \item Pipeline-Projektion der Projektionsfläche auf die Darstellungs-Hilfsfläche des Beamers
+  \item Raytracing der Szene vom Augpunkt auf die Projektionsfläche
+  \item Raytracing der Projektionsfläche auf die Darstellungs-Hilfsfläche des Beamers
+  \item Rendern auf Framebuffer durch Rendering-Pipeline
 \end{enumerate}
 Wie kann aus der per Raytracing projizierten Szene ein OpenGL-Objekt für die Rendering-Pipeline erzeugt werden?
 
@@ -799,7 +800,7 @@ Hardware-basierte Auswertung:
 \end{itemize}
 \begin{itemize}
   \renewcommand{\labelitemi}{+}%
-  \item ?
+  \item Self Shadowing
 \end{itemize}
 
 
